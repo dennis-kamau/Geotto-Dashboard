@@ -21,6 +21,7 @@ import classNames from "classnames";
 
 // reactstrap components
 import {
+  Badge,
   Button,
   Collapse,
   DropdownToggle,
@@ -38,6 +39,8 @@ import {
   NavbarToggler,
   ModalHeader,
 } from "reactstrap";
+
+import { ThemeContext, themes } from "contexts/ThemeContext";
 
 function AdminNavbar(props) {
   const [collapseOpen, setcollapseOpen] = React.useState(false);
@@ -118,10 +121,10 @@ function AdminNavbar(props) {
                 <DropdownMenu className="dropdown-navbar" right tag="ul">
                   <NavLink tag="li">
                     <DropdownItem className="nav-item">
-                      Mike John responded to your email
+                      No Notifications!
                     </DropdownItem>
                   </NavLink>
-                  <NavLink tag="li">
+                  {/* <NavLink tag="li">
                     <DropdownItem className="nav-item">
                       You have 5 more tasks
                     </DropdownItem>
@@ -140,7 +143,40 @@ function AdminNavbar(props) {
                     <DropdownItem className="nav-item">
                       Another one
                     </DropdownItem>
-                  </NavLink>
+                  </NavLink> */}
+                </DropdownMenu>
+              </UncontrolledDropdown>
+              <UncontrolledDropdown nav>
+                <DropdownToggle
+                  caret
+                  color="default"
+                  data-toggle="dropdown"
+                  nav
+                >
+                  <i className="tim-icons icon-bulb-63" />
+                  <p className="d-lg-none">Theme</p>
+                </DropdownToggle>
+                <DropdownMenu className="dropdown-navbar" right tag="ul">
+                  <ThemeContext.Consumer>
+                    {({ changeTheme }) => (
+                      <>
+                        <NavLink
+                          tag="li"
+                          onClick={() => changeTheme(themes.light)}
+                        >
+                          <DropdownItem className="nav-item">
+                            Light Theme
+                          </DropdownItem>
+                        </NavLink>
+                        <NavLink
+                          tag="li"
+                          onClick={() => changeTheme(themes.dark)}
+                        >
+                          <DropdownItem className="nav-item">Dark Theme</DropdownItem>
+                        </NavLink>
+                      </>
+                    )}
+                  </ThemeContext.Consumer>
                 </DropdownMenu>
               </UncontrolledDropdown>
               <UncontrolledDropdown nav>
