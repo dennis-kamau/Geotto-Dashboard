@@ -53,13 +53,16 @@ import {
 function Dashboard(props) {
   const [bigChartData, setbigChartData] = React.useState("data1");
 
-  const Devices = React.useMemo(() => [
-    'Geotto Incubator',
-    'Geotto Greenhouse',
-    'Barnview 1 Kericho',
-    'L. Nakuru Center Waspmote Smart Water',
-    'L. Nakuru Waspmote Smart Water Xtreme Nderit',
-  ], []);
+  const Devices = React.useMemo(
+    () => [
+      "Geotto Incubator",
+      "Geotto Greenhouse",
+      "Barnview 1 Kericho",
+      "L. Nakuru Center Waspmote Smart Water",
+      "L. Nakuru Waspmote Smart Water Xtreme Nderit",
+    ],
+    []
+  );
 
   const [activeDevice, setActiveDevice] = React.useState(Devices[0]);
 
@@ -70,13 +73,13 @@ function Dashboard(props) {
     <>
       <div className="content">
         <ButtonGroup
-          className="btn-group-toggle float-left"
+          className="btn-group-toggle"
           data-toggle="buttons"
+          style={{ marginBottom: 20, display: 'block' }}
         >
-
-          {
-            Devices.map((device) => {
-              return <Button
+          {Devices.map((device, index) => {
+            return (
+              <Button
                 tag="label"
                 className={classNames("btn-simple", {
                   active: activeDevice === device,
@@ -90,66 +93,18 @@ function Dashboard(props) {
                   {device}
                 </span>
                 <span className="d-block d-sm-none">
-                  <i className="tim-icons icon-single-02" />
+                  {/* <i className="tim-icons icon-single-02" /> */}
+                  <p style={{marginBottom: 0}}>{index + 1}</p>
                 </span>
               </Button>
-            })
-          }
+            );
+          })}
 
-          {/* <Button
-            tag="label"
-            className={classNames("btn-simple", {
-              active: bigChartData === "data1",
-            })}
-            color="info"
-            id="0"
-            size="sm"
-            onClick={() => setBgChartData("data1")}
-          >
-            <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
-              Geotto Incubator
-            </span>
-            <span className="d-block d-sm-none">
-              <i className="tim-icons icon-single-02" />
-            </span>
-          </Button>
-          <Button
-            color="info"
-            id="1"
-            size="sm"
-            tag="label"
-            className={classNames("btn-simple", {
-              active: bigChartData === "data2",
-            })}
-            onClick={() => setBgChartData("data2")}
-          >
-            <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
-              Geotto Greenhouse
-            </span>
-            <span className="d-block d-sm-none">
-              <i className="tim-icons icon-gift-2" />
-            </span>
-          </Button>
-          <Button
-            color="info"
-            id="2"
-            size="sm"
-            tag="label"
-            className={classNames("btn-simple", {
-              active: bigChartData === "data3",
-            })}
-            onClick={() => setBgChartData("data3")}
-          >
-            <span className="d-none d-sm-block d-md-block d-lg-block d-xl-block">
-              Lane Nakuru Center
-            </span>
-            <span className="d-block d-sm-none">
-              <i className="tim-icons icon-tap-02" />
-            </span>
-          </Button> */}
+          <span className="d-block d-sm-none" style={{marginTop: 10}}>
+            <p>{activeDevice}</p>
+          </span>
         </ButtonGroup>
-      </div>
-      {/* <div className="content">
+
         <Row>
           <Col xs="12">
             <Card className="card-chart">
@@ -287,7 +242,8 @@ function Dashboard(props) {
             </Card>
           </Col>
         </Row>
-        <Row>
+
+        {/* <Row>
           <Col lg="6" md="12">
             <Card className="card-tasks">
               <CardHeader>
@@ -618,8 +574,8 @@ function Dashboard(props) {
               </CardBody>
             </Card>
           </Col>
-        </Row>
-      </div> */}
+        </Row> */}
+      </div>
     </>
   );
 }
