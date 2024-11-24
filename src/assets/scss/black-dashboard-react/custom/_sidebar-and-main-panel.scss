@@ -342,12 +342,12 @@
     }
   }
 
-  &[data="blue"]{
-    @include linear-gradient($info-states, $info);
-  }
-  &[data="green"]{
-    @include linear-gradient($success-states, $success);
-  }
+  // &[data="blue"]{
+  //   @include linear-gradient($info-states, $info);
+  // }
+  // &[data="green"]{
+  //   @include linear-gradient($success-states, $success);
+  // }
 
   .user{
     padding-bottom: 20px;

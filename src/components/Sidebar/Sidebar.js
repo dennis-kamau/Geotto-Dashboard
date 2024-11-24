@@ -61,51 +61,39 @@ function Sidebar(props) {
   let logoImg = null;
   let logoText = null;
   if (logo !== undefined) {
-    if (logo.outterLink !== undefined) {
-      logoImg = (
-        <a
-          href={logo.outterLink}
-          className="simple-text logo-mini"
-          target="_blank"
-          onClick={props.toggleSidebar}
+    logoImg = (
+      <Link to={logo.innerLink} onClick={props.toggleSidebar}>
+        <div
+          className="logo-img"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column",
+          }}
         >
-          <div className="logo-img">
-            <img src={logo.imgSrc} alt="react-logo" />
-          </div>
-        </a>
-      );
-      logoText = (
-        <a
-          href={logo.outterLink}
-          className="simple-text logo-normal"
-          target="_blank"
-          onClick={props.toggleSidebar}
-        >
-          {logo.text}
-        </a>
-      );
-    } else {
-      logoImg = (
-        <Link
-          to={logo.innerLink}
-          className="simple-text logo-mini"
-          onClick={props.toggleSidebar}
-        >
-          <div className="logo-img">
-            <img src={logo.imgSrc} alt="react-logo" />
-          </div>
-        </Link>
-      );
-      logoText = (
-        <Link
-          to={logo.innerLink}
-          className="simple-text logo-normal"
-          onClick={props.toggleSidebar}
-        >
-          {logo.text}
-        </Link>
-      );
-    }
+          <img
+            src={logo.imgSrc}
+            alt="geotto-logo"
+            style={{
+              width: 180,
+              objectFit: "contain",
+              padding: 10,
+              borderRadius: 10,
+              backgroundColor: "#fff",
+            }}
+          />
+        </div>
+      </Link>
+    );
+    logoText = (
+      <Link
+        to={logo.innerLink}
+        className="simple-text logo-normal"
+        onClick={props.toggleSidebar}
+      >
+        {logo.text}
+      </Link>
+    );
   }
   return (
     <BackgroundColorContext.Consumer>
@@ -113,9 +101,12 @@ function Sidebar(props) {
         <div className="sidebar" data={color}>
           <div className="sidebar-wrapper" ref={sidebarRef}>
             {logoImg !== null || logoText !== null ? (
-              <div className="logo">
+              <div
+                className="logo"
+                style={{ paddingTop: 15, paddingBottom: 15 }}
+              >
                 {logoImg}
-                {logoText}
+                {/* {logoText} */}
               </div>
             ) : null}
             <Nav>
@@ -139,12 +130,6 @@ function Sidebar(props) {
                   </li>
                 );
               })}
-              <li className="active-pro">
-                <ReactstrapNavLink href="https://www.creative-tim.com/product/black-dashboard-pro-react?ref=bdr-user-archive-sidebar-upgrade-pro">
-                  <i className="tim-icons icon-spaceship" />
-                  <p>Upgrade to PRO</p>
-                </ReactstrapNavLink>
-              </li>
             </Nav>
           </div>
         </div>
